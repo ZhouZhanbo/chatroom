@@ -3,7 +3,7 @@ import threading
 import json
 import queue
 IP = '127.0.0.1'
-PORT = 114514
+PORT = 11451
 users = []  # 列表储存用户信息，三元元组，(用户socket， 用户名， 用户地址)
 lock = threading.Lock()
 mesg_que = queue.Queue()  # 队列存放二元元组 (用户地址， 用户消息)
@@ -16,7 +16,7 @@ class Server:
 
     def connect_to_client(self, client_socket, client_address):
         user = client_socket.recv(1024)
-        user = user.decode('utf-8')
+        user = user.decode()
 
         for i in range(len(users)):  # 检索是否有重名用户并重新取名
             repeat = 0
@@ -29,7 +29,7 @@ class Server:
         print('新的连接:', client_address, ':', user, end='')
         try:  # 进入接收循环
             while True:
-                data = client_socket.recv(1024)
+                data = json.loads(client_socket.recv(1024))
                 data = data.decode()
                 lock.acquire()  # 申请开锁
                 try:
@@ -85,3 +85,4 @@ class Server:
 
 if __name__ == '__main__':
     server = Server(PORT, IP)
+    server.run()
