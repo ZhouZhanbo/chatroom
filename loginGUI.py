@@ -49,3 +49,5 @@ def login(*args):
 loginRoot.bind('<Return>', login)            # 回车绑定登录功能
 but = tk.Button(loginRoot, text='登录', command=login,font=(15))
 but.place(x=165, y=160, width=70, height=30)
+tkinter.mainloop()
+

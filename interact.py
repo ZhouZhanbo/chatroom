@@ -45,11 +45,12 @@ class Interact(object):
         doc.close()
 
 
-Try = Interact("user1", "user2")
-Try.show()
-first = input()
-while first != '0':
-    Try.add_information(Try.u1, first)
+if __name__ == "__main__":
+    Try = Interact("user1", "user2")
+    Try.show()
     first = input()
-Try.show()
-Try.close()
+    while first != '0':
+        Try.add_information(Try.u1, first)
+        first = input()
+    Try.show()
+    Try.close()

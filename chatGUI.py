@@ -32,11 +32,13 @@ def showUsers():
         listbox1.place_forget()  # 隐藏控件
         ii = 1
 # 查看在线用户按钮
+
+
 button1 = tk.Button(root, text='用户列表', command=showUsers)
 button1.place(x=485, y=320, width=90, height=30)
 
 # 创建输入文本框和关联变量
 a = tk.StringVar()
-a.set('')
+a.set('aaa')
 entry = tk.Entry(root, width=120, textvariable=a)
 entry.place(x=5, y=350, width=570, height=40)
