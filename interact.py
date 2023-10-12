@@ -14,8 +14,8 @@ class Interact(object):
                 doc = open("./messages/"+self.u1+self.u2+".txt", "r")
                 news = doc.readlines()
                 for line in news:
-                    if ":" in line:
-                        sender, information = line.split(":")
+                    if "\0" in line:
+                        sender, information = line.split("\0")
                         self.add_information(sender, information[:-1])
                 doc.close()
 # 生成存放消息的文件夹
@@ -40,7 +40,7 @@ class Interact(object):
     def close(self):
         doc = open(file="./messages/" + self.u1 + self.u2 + ".txt", mode="w")
         while len(self.messages):
-            doc.write(self.messages[0][0] + ":" + self.messages[0][1] + "\n")
+            doc.write(self.messages[0][0] + "\0" + self.messages[0][1] + "\n")
             self.messages.pop(0)
         doc.close()
 

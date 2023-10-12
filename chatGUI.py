@@ -39,6 +39,6 @@ button1.place(x=485, y=320, width=90, height=30)
 
 # 创建输入文本框和关联变量
 a = tk.StringVar()
-a.set('aaa')
+a.set('')
 entry = tk.Entry(root, width=120, textvariable=a)
 entry.place(x=5, y=350, width=570, height=40)

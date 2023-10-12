@@ -14,9 +14,22 @@ def send(*args):
     t.show()
 
 
-t = interact.Interact("user1", "user2")
-for lines in t.messages:
-    chatGUI.listbox.insert(tkinter.END, "\n" + lines[0] + ":" + lines[1], 'blue')
-chatGUI.root.bind('<Return>', send)
+def create_private_chat():
+    global user, chat, t
+    if t.u1 == user:
+        t.close()
+    t = interact.Interact(user, chat)
+    chatGUI.listbox.delete(1.0, "end")
+    for lines in t.messages:
+        chatGUI.listbox.insert(tkinter.END, lines[0] + ":" + lines[1] + "\n", 'blue')
 
-tkinter.mainloop()
+
+chat = "user2"
+user = "user1"
+t = interact.Interact(user, chat)
+if __name__ == '__main__':
+    create_private_chat()
+    chatGUI.root.bind('<Return>', send)
+    chatGUI.listbox.delete(1.0, "end")
+    tkinter.mainloop()
+    t.close()
