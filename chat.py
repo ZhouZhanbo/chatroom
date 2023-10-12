@@ -3,6 +3,7 @@ import interact
 import chatGUI
 
 
+# 发送消息，缺一行发送给服务器消息
 def send(*args):
     global t, user
     if not chatGUI.a.get():
@@ -15,20 +16,23 @@ def send(*args):
         t.show()
 
 
+# 接受消息，仅接受消息添加到对应的文件里
 def revc(sender, message):
     tt = interact.Interact(user, sender)
     tt.add_information(sender, message)
     tt.close()
 
 
+# 创建chat界面
 def create_chat():
     chatGUI.user = user
     chatGUI.create_chatGUI()
     chatGUI.entry.bind("<Return>", send)
 
 
-def create_private_chat():
-    global user, chat, t
+# 在主界面显示对应的聊天记录，在点击对应私聊用户后需要调用
+def create_private_chat(chat):
+    global user, t
     if t.u1 == user:
         t.close()   # 关闭上一个私聊
     t = interact.Interact(user, chat)
@@ -37,6 +41,5 @@ def create_private_chat():
         chatGUI.listbox.insert(tkinter.END, lines[0] + ":" + lines[1] + "\n", 'blue')
 
 
-chat = "user2"
 user = "user"
 t = 0
