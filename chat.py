@@ -15,7 +15,14 @@ def send(*args):
         t.show()
 
 
+def revc(sender, message):
+    tt = interact.Interact(user, sender)
+    tt.add_information(sender, message)
+    tt.close()
+
+
 def create_chat():
+    chatGUI.user = user
     chatGUI.create_chatGUI()
     chatGUI.entry.bind("<Return>", send)
 
@@ -33,4 +40,3 @@ def create_private_chat():
 chat = "user2"
 user = "user"
 t = 0
-
