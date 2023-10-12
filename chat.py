@@ -1,23 +1,29 @@
-import chatGUI
 import tkinter
 import interact
+import chatGUI
 
 
 def send(*args):
-    global t
+    global t, user
     if not chatGUI.a.get():
         print("error")
         return
-    t.add_information("user1", chatGUI.a.get())
+    t.add_information(user, chatGUI.a.get())
     chatGUI.a.set("")
     chatGUI.listbox.insert(tkinter.END, "\n" + t.messages[-1][0] + ":" + t.messages[-1][1], 'blue')
-    t.show()
+    if __name__ == '__main__':
+        t.show()
+
+
+def create_chat():
+    chatGUI.create_chatGUI()
+    chatGUI.entry.bind("<Return>", send)
 
 
 def create_private_chat():
     global user, chat, t
     if t.u1 == user:
-        t.close()
+        t.close()   # 关闭上一个私聊
     t = interact.Interact(user, chat)
     chatGUI.listbox.delete(1.0, "end")
     for lines in t.messages:
@@ -25,11 +31,6 @@ def create_private_chat():
 
 
 chat = "user2"
-user = "user1"
-t = interact.Interact(user, chat)
-if __name__ == '__main__':
-    create_private_chat()
-    chatGUI.root.bind('<Return>', send)
-    chatGUI.listbox.delete(1.0, "end")
-    tkinter.mainloop()
-    t.close()
+user = "user"
+t = 0
+
