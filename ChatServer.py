@@ -32,7 +32,7 @@ class Server:
         try:  # 进入接收循环
             while True:
                 data = client_socket.recv(1024).decode('utf-8')
-                print(json.loads(data))  # 调试时使用，查看接收消息是否正常
+                print(data)  # 调试时使用，查看接收消息是否正常
                 lock.acquire()  # 申请开锁
                 try:
                     mesg_que.put((client_address, data))  # 放入消息队列
@@ -66,13 +66,14 @@ class Server:
                         "message": mesg_src["message"],
                         "online_list": online_list}
         data_to_send = json.dumps(data_to_send)
+        data_to_send = data_to_send.encode('utf-8')
         return data_to_send
 
     def send_data(self):
         while True:
             if not mesg_que.empty():  # 消息队列非空时
                 que = mesg_que.get()  # 取出队列中的消息
-                message = json.loads(que)  # 解包为字典格式
+                message = json.loads(que[1])  # 解包为字典格式
 
                 if message["receiver"] == "all_user":  # 若为群发消息
                     send_data = self.pack_data(message)  # 打包需要转发的消息

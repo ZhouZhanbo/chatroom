@@ -6,7 +6,7 @@ IP = '127.0.0.1'
 PORT = 11451
 online_list = []  # 在线队列，用于客户端显示在线列表
 chat = '【群聊】'
-user = 'src'
+user = 'src2'
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect((IP, PORT))
@@ -23,7 +23,7 @@ def send():  # 测试使用代码
     while True:
         data = input()
         message = {"sender": user,
-                    "receiver": "src2",
+                    "receiver": "src",
                     "message": data}
         message = json.dumps(message)
         message = message.encode('utf-8')
