@@ -46,9 +46,6 @@ def create_chatGUI():
     listbox1 = tk.Listbox(root)
     listbox1.place(x=445, y=0, width=130, height=320)
 
-    button1 = tk.Button(root, text='用户列表', command=showUsers)
-    button1.place(x=485, y=320, width=90, height=30)
-
     # 创建输入文本框和关联变量
     a = tk.StringVar()
     a.set('')

@@ -25,14 +25,15 @@ def revc(sender, message):
 
 # 创建chat界面
 def create_chat():
+    global t
     chatGUI.user = user
     chatGUI.create_chatGUI()
-    chatGUI.entry.bind("<Return>", send)
+    t = interact.Interact(user, "all_user")
 
 
 # 在主界面显示对应的聊天记录，在点击对应私聊用户后需要调用
-def create_private_chat(chat):
-    global user, t
+def create_private_chat():
+    global user, t, chat
     if t.u1 == user:
         t.close()   # 关闭上一个私聊
     t = interact.Interact(user, chat)
@@ -41,5 +42,12 @@ def create_private_chat(chat):
         chatGUI.listbox.insert(tkinter.END, lines[0] + ":" + lines[1] + "\n", 'blue')
 
 
+def show_users(users):
+    chatGUI.listbox1.delete(0, "end")
+    for use in users:
+        chatGUI.listbox1.insert("end", use)
+
+
 user = "user"
+chat = "user2"
 t = 0

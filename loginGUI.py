@@ -15,9 +15,9 @@ loginRoot["width"] = 400
 loginRoot.resizable(0, 0)  # 限制窗口大小
 
 IP1 = tk.StringVar()
-IP1.set("127.0.0.1:8888")  # 默认显示的ip和端口
+IP1.set("127.0.0.1:11451")  # 默认显示的ip和端口
 User = tk.StringVar()
-User.set("")
+User.set("yewe")
 
 # 服务器标签
 labelIP = tk.Label(loginRoot, text='地址:端口', font=("宋体", 12))

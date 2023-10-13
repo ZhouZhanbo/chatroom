@@ -43,6 +43,7 @@ class Interact(object):
             doc.write(self.messages[0][0] + "\0" + self.messages[0][1] + "\n")
             self.messages.pop(0)
         doc.close()
+        del self
 
 
 if __name__ == "__main__":
