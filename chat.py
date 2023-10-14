@@ -22,7 +22,7 @@ def revc(receiver, sender, message):
         return
     if (t.u2 == "all_user" and receiver == "all_user") or (t.u2 == sender and receiver != "all_user"):
         t.add_information(sender, message)
-        chatGUI.listbox.insert(tkinter.END, "\n" + sender + ":" + t.messages[-1][1], 'blue')
+        chatGUI.listbox.insert(tkinter.END, "\n" + sender + ":" + t.messages[-1][1], 'black')
     else:
         if receiver == "all_user":
             tt = interact.Interact(user, "all_user")
@@ -40,7 +40,10 @@ def create_chat():
     chatGUI.create_chatGUI()
     t = interact.Interact(user, "all_user")
     for lines in t.messages:
-        chatGUI.listbox.insert(tkinter.END, lines[0] + ":" + lines[1] + "\n", 'blue')
+        if lines[0] == user:
+            chatGUI.listbox.insert(tkinter.END, lines[0] + ":" + lines[1] + "\n", 'blue')
+        else:
+            chatGUI.listbox.insert(tkinter.END, lines[0] + ":" + lines[1] + "\n", 'black')
     chatGUI.listbox1.bind("<ButtonRelease-1>", create_private_chat)
 
 
@@ -61,7 +64,10 @@ def create_private_chat(*args):
         t = interact.Interact(user, chat)
         chatGUI.listbox.delete(1.0, "end")
         for lines in t.messages:
-            chatGUI.listbox.insert(tkinter.END, lines[0] + ":" + lines[1] + "\n", 'blue')
+            if lines[0] == user:
+                chatGUI.listbox.insert(tkinter.END, lines[0] + ":" + lines[1] + "\n", 'blue')
+            else:
+                chatGUI.listbox.insert(tkinter.END, lines[0] + ":" + lines[1] + "\n", 'black')
 
 
 def show_users(users):
