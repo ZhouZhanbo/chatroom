@@ -14,7 +14,7 @@ def recv():
             if data["type"] == "user_list":
                 chat.show_users(data["user_list"])
             elif data["type"] == "message":
-                chat.revc(data["sender"], data["message"])
+                chat.revc(data["receiver"], data["sender"], data["message"])
         except:
             print("已经断开链接")
             break
@@ -40,3 +40,4 @@ r = threading.Thread(target=recv)
 r.start()
 chat.tkinter.mainloop()
 s.close()
+chat.t.close()

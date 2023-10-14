@@ -17,10 +17,20 @@ def send(*args):
 
 
 # 接受消息，仅接受消息添加到对应的文件里
-def revc(sender, message):
-    tt = interact.Interact(user, sender)
-    tt.add_information(sender, message)
-    tt.close()
+def revc(receiver, sender, message):
+    if sender == user:
+        return
+    if (t.u2 == "all_user" and receiver == "all_user") or (t.u2 == sender and receiver != "all_user"):
+        t.add_information(sender, message)
+        chatGUI.listbox.insert(tkinter.END, "\n" + sender + ":" + t.messages[-1][1], 'blue')
+    else:
+        if receiver == "all_user":
+            tt = interact.Interact(user, "all_user")
+        else:
+            tt = interact.Interact(user, sender)
+        tt.add_information(sender, message)
+        tt.close()
+    print("已接收到" + sender + "的消息")
 
 
 # 创建chat界面
@@ -29,25 +39,38 @@ def create_chat():
     chatGUI.user = user
     chatGUI.create_chatGUI()
     t = interact.Interact(user, "all_user")
+    for lines in t.messages:
+        chatGUI.listbox.insert(tkinter.END, lines[0] + ":" + lines[1] + "\n", 'blue')
+    chatGUI.listbox1.bind("<ButtonRelease-1>", create_private_chat)
 
 
 # 在主界面显示对应的聊天记录，在点击对应私聊用户后需要调用
-def create_private_chat():
+def create_private_chat(*args):
     global user, t, chat
-    if t.u1 == user:
-        t.close()   # 关闭上一个私聊
-    t = interact.Interact(user, chat)
-    chatGUI.listbox.delete(1.0, "end")
-    for lines in t.messages:
-        chatGUI.listbox.insert(tkinter.END, lines[0] + ":" + lines[1] + "\n", 'blue')
+    indexs = chatGUI.listbox1.curselection()
+    print(indexs)
+    index = -1
+    if len(indexs) > 0:
+        index = indexs[0]
+    if index >= 0:
+        print("??")
+        chat = chatGUI.listbox1.get(index)
+        print(chat)
+        if t.u1 == user:
+            t.close()   # 关闭上一个私聊
+        t = interact.Interact(user, chat)
+        chatGUI.listbox.delete(1.0, "end")
+        for lines in t.messages:
+            chatGUI.listbox.insert(tkinter.END, lines[0] + ":" + lines[1] + "\n", 'blue')
 
 
 def show_users(users):
     chatGUI.listbox1.delete(0, "end")
+    chatGUI.listbox1.insert("end", "all_user")
     for use in users:
         chatGUI.listbox1.insert("end", use)
 
 
 user = "user"
-chat = "user2"
+chat = "all_user"
 t = 0
