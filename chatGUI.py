@@ -1,29 +1,16 @@
 import tkinter as tk
 from tkinter import scrolledtext
 
-# 聊天窗口
-# 创建图形界面
+# 全局变量
 user = "user"
 root = []
 listbox = []
 listbox1 = []
 a = []
 entry = []
-ii = 0
 
 
-def showUsers():
-    global listbox1, ii
-    if ii == 1:
-        listbox1.place(x=445, y=0, width=130, height=320)
-        ii = 0
-    else:
-        listbox1.place_forget()  # 隐藏控件
-        ii = 1
-# 查看在线用户按钮
-
-
-# 全局变量
+# 聊天界面创建
 def create_chatGUI():
     global user, root, listbox, listbox1, a, entry
     root = tk.Tk()

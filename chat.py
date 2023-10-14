@@ -3,7 +3,7 @@ import interact
 import chatGUI
 
 
-# 发送消息，缺一行发送给服务器消息
+# 发送消息，发送给服务器消息
 def send(*args):
     global t, user
     if not chatGUI.a.get():
@@ -16,7 +16,7 @@ def send(*args):
         t.show()
 
 
-# 接受消息，仅接受消息添加到对应的文件里
+# 接受消息，接受消息添加到对应的文件里，并显示
 def revc(receiver, sender, message):
     if sender == user:
         return
@@ -33,7 +33,7 @@ def revc(receiver, sender, message):
     print("已接收到" + sender + "的消息")
 
 
-# 创建chat界面
+# 创建聊天界面
 def create_chat():
     global t
     chatGUI.user = user
@@ -47,7 +47,7 @@ def create_chat():
     chatGUI.listbox1.bind("<ButtonRelease-1>", create_private_chat)
 
 
-# 在主界面显示对应的聊天记录，在点击对应私聊用户后需要调用
+# 在主界面显示对应的聊天记录，在点击对应私聊用户后需要调用，在create_chat里已经关联
 def create_private_chat(*args):
     global user, t, chat
     indexs = chatGUI.listbox1.curselection()
@@ -70,6 +70,7 @@ def create_private_chat(*args):
                 chatGUI.listbox.insert(tkinter.END, lines[0] + ":" + lines[1] + "\n", 'black')
 
 
+# 显示用户
 def show_users(users):
     chatGUI.listbox1.delete(0, "end")
     chatGUI.listbox1.insert("end", "all_user")
