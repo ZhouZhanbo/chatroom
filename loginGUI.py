@@ -37,7 +37,7 @@ entryUser.place(x=160, y=110, width=130, height=30)
 # 登录按钮
 def login(*args):
     global IP, PORT, user
-    IP, PORT = entryIP.get().split(':')  # 获取IP和端口号
+    IP, PORT = entryIP.get( ).split(':')  # 获取IP和端口号
     PORT = int(PORT)                     # 端口号需要为int类型
     user = entryUser.get()
     if not user:

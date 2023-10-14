@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import scrolledtext
-
+import chat
 # 全局变量
 user = "user"
 root = []
@@ -38,3 +38,4 @@ def create_chatGUI():
     a.set('')
     entry = tk.Entry(root, width=120, textvariable=a)
     entry.place(x=5, y=350, width=570, height=40)
+
