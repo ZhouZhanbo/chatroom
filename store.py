@@ -59,5 +59,5 @@ def shuchu():
         print(row)
     conn.close()
 
-
+create_database()
 #shuchu()
