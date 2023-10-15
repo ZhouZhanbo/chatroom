@@ -1,5 +1,6 @@
 import tkinter as tk
 import tkinter.messagebox
+import store
 
 
 # 登陆窗口
@@ -39,7 +40,17 @@ def login(*args):
             tkinter.messagebox.showerror('温馨提示', message='密码不能超过16位！')
             password.set("")
         else:
-            loginRoot.destroy()  # 关闭窗口
+            result = store.check_user(user,Password)
+            if result == 1:
+                tkinter.messagebox.showinfo('提示', message='注册并登录成功！')
+                loginRoot.destroy()  # 关闭窗口
+            elif result == 2:
+                tkinter.messagebox.showinfo('提示', message='登录成功！')
+                loginRoot.destroy()
+            else:
+                tkinter.messagebox.showerror('提示', message='密码错误！')
+                password.set("")
+
     else:
         tkinter.messagebox.showerror('温馨提示', message='用户名或密码为空！')
 
