@@ -1,7 +1,7 @@
 import socket
 import chat
 import chatGUI
-import loginGUI
+import safelogin
 import json
 import threading
 import tkinter as tk
@@ -41,9 +41,9 @@ def send(*args):
     s.send(data.encode())
 
 
-chat.user = loginGUI.user
+chat.user = safelogin.user
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((loginGUI.IP, loginGUI.PORT))   # 网络链接
+s.connect(("127.0.0.1", 11451))   # 网络链接
 if chat.user:
     s.send(json.dumps({"type": "user", "user": chat.user}).encode())  # 发送用户名
 else:
