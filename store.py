@@ -16,6 +16,28 @@ def create_database():
     conn.close()
 
 
+def user_zhuce(username,password,againpassword):    #注册用户
+    print("ok")
+    conn = sqlite3.connect('user_data.db')
+    c = conn.cursor()
+
+    # 在users表中查找用户名
+    c.execute("SELECT * FROM users WHERE username=?", (username,))
+    user = c.fetchone()
+
+    if user is None:    #用户名不重复
+        if password == againpassword:   #注册并返回3
+            password = password_md5(password)
+            c.execute("INSERT INTO users VALUES (?,?)", (username, password))
+            conn.commit()
+            return 3
+        else:   #密码和确认密码不一样，返回2
+            return 2
+
+
+    else:   #用户名重复，返回1
+        return 1
+
 def check_user(username, password): #查找密码
     conn = sqlite3.connect('user_data.db')
     c = conn.cursor()
@@ -24,11 +46,8 @@ def check_user(username, password): #查找密码
     c.execute("SELECT * FROM users WHERE username=?", (username,))
     user = c.fetchone()
 
-    if user is None:                #第一次登录即注册
-        # 如果找不到用户，将用户名和密码关联起来存入数据库并返回1
-        password = password_md5(password)       #将密码加密
-        c.execute("INSERT INTO users VALUES (?,?)", (username, password))
-        conn.commit()
+    if user is None:                #未注册
+
         return 1
     else:
         # 如果找到用户，判断收到的密码与储存的密码是否相同，相同则返回2，不相同则返回3
@@ -37,7 +56,6 @@ def check_user(username, password): #查找密码
             return 2
         else:
             return 3
-
 
 def password_md5(password):#密码加密
     # 创建一个md5对象
@@ -60,4 +78,4 @@ def shuchu():
     conn.close()
 
 create_database()
-#shuchu()
+shuchu()
