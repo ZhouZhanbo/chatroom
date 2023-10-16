@@ -56,7 +56,6 @@ def create_private_chat(*args):
     if len(indexs) > 0:
         index = indexs[0]
     if index >= 0:
-        print("??")
         chat = chatGUI.listbox1.get(index)
         print(chat)
         if t.u1 == user:
