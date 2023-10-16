@@ -75,7 +75,7 @@ def show_users(users):
     chatGUI.listbox1.insert("end", "all_user")
     for use in users:
         chatGUI.listbox1.insert("end", use)
-
+    chatGUI.listbox1.select_set(0)
 
 user = "user"
 chat = "all_user"
