@@ -67,7 +67,7 @@ def create_private_chat(*args):
                 chatGUI.listbox.insert(tkinter.END, lines[0] + ":" + lines[1] + "\n", 'blue')
             else:
                 chatGUI.listbox.insert(tkinter.END, lines[0] + ":" + lines[1] + "\n", 'black')
-
+    chatGUI.listbox1.itemconfigure((chatGUI.listbox1.curselection()[0]), bg="white")
 
 # 显示用户
 def show_users(users):
