@@ -1,9 +1,11 @@
 import socket
 import chat
+import chatGUI
 import loginGUI
 import json
 import threading
 import tkinter as tk
+
 
 # 接收消息
 def recv():
@@ -16,6 +18,10 @@ def recv():
                 chat.show_users(data["user_list"])
             elif data["type"] == "message":  # 接收的消息是文本消息
                 chat.revc(data["receiver"], data["sender"], data["message"])
+                for i in range(-1,chatGUI.listbox1.size()):  # 来消息时提醒：发送方背景变红
+                    if chatGUI.listbox1.get(i) == data["sender"] \
+                            and chatGUI.listbox1.curselection()[0] != i:  # 当已经选中该发方则不变红
+                        chatGUI.listbox1.itemconfigure((i,), bg="red")
         except:
             print("已经断开链接")
             break
