@@ -20,6 +20,8 @@ def create_loginroot():
     loginRoot["height"] = 250
     loginRoot["width"] = 400
     loginRoot.resizable(0, 0)  # 限制窗口大小
+    # 更改logo
+    loginRoot.iconphoto(False, tk.PhotoImage(file='icon/logo.png'))
 
     User = tk.StringVar()
     User.set("")
