@@ -8,7 +8,7 @@ users = []  # 列表储存用户信息，三元元组，(用户socket， 用户�
 lock = threading.Lock()
 mesg_que = queue.Queue()  # 队列存放二元元组 (用户地址， 用户消息)
 online_list = []  # 在线队列，用于客户端显示在线列表
-
+login_flag = 1
 
 class Server:
     def __init__(self, port, ip):
@@ -16,15 +16,25 @@ class Server:
         self.ip = ip
 
     def connect_to_client(self, client_socket, client_address):
-        user = client_socket.recv(1024).decode('utf-8')  # 接收字符消息
-        recv_message = json.loads(user)  # recv_message为字典格式，格式为{"sender", "receiver", "message"}
+        while True:
+            user = client_socket.recv(1024).decode('utf-8')  # 接收字符消息
+            recv_message = json.loads(user)  # recv_message为字典格式，格式为{"sender", "receiver", "message"}
+            return_message = {"type": "login", "message": "OK"}
+            if recv_message["type"] == "login":  # 登录操作
+                for i in range(len(users)):  # 检索是否有重名用户并重新取名
+                    if recv_message["user"] == users[i][1]:
+                        print('用户已存在！')
+                        return_message["message"] = "ERROR"
+                        return_message = json.dumps(return_message)
+                        return_message = return_message.encode('utf-8')
+                        client_socket.send(return_message)  # 返回登录错误信息
+                        break
 
-        for i in range(len(users)):  # 检索是否有重名用户并重新取名
-            repeat = 0
-            if recv_message["user"] == users[i][1]:
-                repeat = repeat + 1
-                print('用户已存在！')
-                recv_message["user"] = recv_message["user"] + str(repeat)
+                # 这里加一行判断密码正确然后执行下面的发送
+                return_message = json.dumps(return_message)
+                return_message = return_message.encode('utf-8')
+                client_socket.send(return_message)  # 返回登录成功信息
+                break
 
         users.append((client_socket, recv_message["user"], client_address))  # 将用户加入用户队列
         online_list.append(recv_message["user"])

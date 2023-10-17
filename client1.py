@@ -6,7 +6,7 @@ import json
 import threading
 import tkinter as tk
 import time
-
+from safelogin import s
 
 # 接收消息
 def recv():
@@ -45,8 +45,6 @@ def send(*args):
 
 
 chat.user = safelogin.user
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect(("127.0.0.1", 11451))   # 网络链接
 if chat.user:
     s.send(json.dumps({"type": "user", "user": chat.user}).encode())  # 发送用户名
 else:

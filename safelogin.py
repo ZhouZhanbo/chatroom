@@ -2,9 +2,12 @@ import tkinter as tk
 import tkinter.messagebox
 import store
 import Zhuce
+import socket
+import json
 
 user = ""
-
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(("127.0.0.1", 11451))  # 网络链接
 
 def zhuce(*args):
     print("注册")
@@ -45,6 +48,25 @@ def create_loginroot():
         global user, Password
         user = entryUser.get()
         Password = entrypassword.get()
+
+        data = {"type": "login", "user": user, "password": Password}  # 发给服务器
+        data = json.dumps(data)
+        data = data.encode('utf-8')
+        s.send(data)
+
+        recv_data = s.recv(1024).decode('utf-8')  # 接收返回信息
+        recv_data = json.loads(recv_data)
+        if recv_data["type"] == "login":  # 登录消息
+            if recv_data["message"] == "OK":
+                pass  # 登录成功操作
+            elif recv_data["message"] == "ERROR":
+                pass  # 错误操作
+        if recv_data["type"] == "register":
+            if recv_data["message"] == "OK":
+                pass  # 注册成功操作
+            elif recv_data["message"] == "ERROR":
+                pass  # 错误操作
+
         if user and Password:
             # if len(Password) > 16:
             # tkinter.messagebox.showerror('温馨提示', message='密码不能超过16位！')
