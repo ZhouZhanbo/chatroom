@@ -44,3 +44,6 @@ def create_chatGUI():
     entry = tk.Entry(root, width=120, textvariable=a)
     entry.place(x=5, y=350, width=570, height=40)
 
+    # 关闭窗口按钮
+    but1 = tk.Button(entry, text='关闭', command=root.destroy, font=15)
+    but1.place(x=445, y=10, width=50, height=30)
