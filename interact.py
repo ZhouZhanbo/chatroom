@@ -15,15 +15,15 @@ class Interact(object):
                 news = doc.readlines()
                 for line in news:
                     if "\0" in line:
-                        sender, information = line.split("\0")
-                        self.add_information(sender, information[:-1])
+                        sender, information, time = line.split("\0")
+                        self.add_information(sender, information, time[:-1])
                 doc.close()
 # 生成存放消息的文件夹
 
-    def add_information(self, sender, information):
+    def add_information(self, sender, information, time):
         if len(self.messages) >= 100:
             self.messages.pop(0)
-        self.messages.append([sender, information])
+        self.messages.append([sender, information, time])
 # 添加聊天记录，可设置一个记录消息的上限，超过上限的部分可以删除
 
     def del_information(self, sender, information):
@@ -40,7 +40,7 @@ class Interact(object):
     def close(self):
         doc = open(file="./messages/" + self.u1 + self.u2 + ".txt", mode="w")
         while len(self.messages):
-            doc.write(self.messages[0][0] + "\0" + self.messages[0][1] + "\n")
+            doc.write(self.messages[0][0] + "\0" + self.messages[0][1] + "\0" + self.messages[0][2] + "\n")
             self.messages.pop(0)
         doc.close()
         del self
