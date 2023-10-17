@@ -1,19 +1,12 @@
 import socket
 import chat
-<<<<<<< HEAD
-import loginGUI
-=======
 import chatGUI
 import safelogin
->>>>>>> zzb
 import json
 import threading
 import tkinter as tk
 
-<<<<<<< HEAD
-=======
 
->>>>>>> zzb
 # 接收消息
 def recv():
     while True:
@@ -25,8 +18,6 @@ def recv():
                 chat.show_users(data["user_list"])
             elif data["type"] == "message":  # 接收的消息是文本消息
                 chat.revc(data["receiver"], data["sender"], data["message"])
-<<<<<<< HEAD
-=======
                 if data["receiver"] != "all_user":
                     for i in range(-1,chatGUI.listbox1.size()):  # 消息发送方背景变红
                         if chatGUI.listbox1.get(i) == data["sender"] \
@@ -37,7 +28,6 @@ def recv():
                         if chatGUI.listbox1.get(i) == "all_user" \
                                 and chatGUI.listbox1.curselection()[0] != i:  # 当已经选中该发方则不变红
                             chatGUI.listbox1.itemconfigure((i,), bg="red")
->>>>>>> zzb
         except:
             print("已经断开链接")
             break
@@ -51,15 +41,9 @@ def send(*args):
     s.send(data.encode())
 
 
-<<<<<<< HEAD
-chat.user = loginGUI.user
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((loginGUI.IP, loginGUI.PORT))   # 网络链接
-=======
 chat.user = safelogin.user
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(("127.0.0.1", 11451))   # 网络链接
->>>>>>> zzb
 if chat.user:
     s.send(json.dumps({"type": "user", "user": chat.user}).encode())  # 发送用户名
 else:
