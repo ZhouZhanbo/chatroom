@@ -56,7 +56,6 @@ def create_private_chat(*args):
     if len(indexs) > 0:
         index = indexs[0]
     if index >= 0:
-        print("??")
         chat = chatGUI.listbox1.get(index)
         print(chat)
         if t.u1 == user:
@@ -68,7 +67,7 @@ def create_private_chat(*args):
                 chatGUI.listbox.insert(tkinter.END, lines[0] + ":" + lines[1] + "\n", 'blue')
             else:
                 chatGUI.listbox.insert(tkinter.END, lines[0] + ":" + lines[1] + "\n", 'black')
-
+    chatGUI.listbox1.itemconfigure((chatGUI.listbox1.curselection()[0]), bg="white")
 
 # 显示用户
 def show_users(users):
@@ -76,7 +75,7 @@ def show_users(users):
     chatGUI.listbox1.insert("end", "all_user")
     for use in users:
         chatGUI.listbox1.insert("end", use)
-
+    chatGUI.listbox1.select_set(0)
 
 user = "user"
 chat = "all_user"
