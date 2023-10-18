@@ -5,6 +5,7 @@ import safelogin
 import json
 import threading
 import tkinter as tk
+import time
 
 
 # 接收消息
@@ -17,8 +18,7 @@ def recv():
             if data["type"] == "user_list":  # 接收的消息是用户列表，则重新加载用户
                 chat.show_users(data["user_list"])
             elif data["type"] == "message":  # 接收的消息是文本消息
-                chat.revc(data["receiver"], data["sender"], data["message"])
-
+                chat.revc(data["receiver"], data["sender"], data["message"], data["time"])
                 if data["receiver"] != "all_user":
                     for i in range(-1,chatGUI.listbox1.size()):  # 消息发送方背景变红
                         if chatGUI.listbox1.get(i) == data["sender"] \
@@ -36,8 +36,10 @@ def recv():
 
 # 发送消息
 def send(*args):
-    data = {"type": "message", "sender": chat.user, "receiver": chat.chat, "message": chat.chatGUI.a.get("1.0","end")}
-    chat.send()
+    timestamp = time.time()
+    data = {"type": "message", "sender": chat.user, "receiver": chat.chat,
+            "message": chat.chatGUI.a.get("1.0", "end"), "time": time.ctime(timestamp)}
+    chat.send(time.ctime(timestamp))
     data = json.dumps(data)
     s.send(data.encode())
 
