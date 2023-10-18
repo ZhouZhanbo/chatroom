@@ -1,4 +1,3 @@
-import socket
 import chat
 import chatGUI
 import safelogin
@@ -45,18 +44,15 @@ def send(*args):
 
 
 chat.user = safelogin.user
-if chat.user:
-    s.send(json.dumps({"type": "user", "user": chat.user}).encode())  # 发送用户名
-else:
-    s.send("no".encode())
-chat.create_chat()   # 创建聊天界面
-chat.chatGUI.entry.bind("<Return>", send)
-# 回车绑定发送功能
-but = tk.Button(chat.chatGUI.entry, text='发送', command=send, font=15)
-but.place(x=500, y=10, width=50, height=30)
-r = threading.Thread(target=recv)  # 启动接受消息线程
-r.start()
-chat.tkinter.mainloop()
+if chat.user != "":
+    chat.create_chat()  # 创建聊天界面
+    chat.chatGUI.entry.bind("<Return>", send)
+    # 回车绑定发送功能
+    but = tk.Button(chat.chatGUI.entry, text='发送', command=send, font=15)
+    but.place(x=500, y=10, width=50, height=30)
+    r = threading.Thread(target=recv)  # 启动接受消息线程
+    r.start()
+    chat.tkinter.mainloop()
 # 关闭链接，把缓存的消息放进文件
 s.close()
 chat.t.close()

@@ -2,6 +2,7 @@ import socket
 import threading
 import json
 import queue
+import store
 IP = '127.0.0.1'
 PORT = 11451
 users = []  # 列表储存用户信息，三元元组，(用户socket， 用户名， 用户地址)
@@ -17,25 +18,44 @@ class Server:
 
     def connect_to_client(self, client_socket, client_address):
         while True:
-            user = client_socket.recv(1024).decode('utf-8')  # 接收字符消息
-            recv_message = json.loads(user)  # recv_message为字典格式，格式为{"sender", "receiver", "message"}
-            return_message = {"type": "login", "message": "OK"}
-            if recv_message["type"] == "login":  # 登录操作
-                for i in range(len(users)):  # 检索是否有重名用户并重新取名
-                    if recv_message["user"] == users[i][1]:
-                        print('用户已存在！')
-                        return_message["message"] = "ERROR"
-                        return_message = json.dumps(return_message)
-                        return_message = return_message.encode('utf-8')
-                        client_socket.send(return_message)  # 返回登录错误信息
+            try:
+                user = client_socket.recv(1024).decode('utf-8')  # 接收字符消息
+                recv_message = json.loads(user)
+                if recv_message["type"] == "login":  # 登录操作
+                    return_message = {"type": "login", "message": "OK"}
+                    for i in range(len(users)):  # 检索是否有重名用户并重新取名
+                        if recv_message["user"] == users[i][1]:
+                            print('用户已存在！')
+                            return_message["message"] = "Error_user_online"
+                            break
+                    if return_message["message"] == "OK":
+                        if store.check_user(recv_message["user"], recv_message["password"]) == 1:
+                            return_message["message"] = "Error_register"
+                        elif store.check_user(recv_message["user"], recv_message["password"]) == 2:
+                            return_message["message"] = "OK"
+                        elif store.check_user(recv_message["user"], recv_message["password"]) == 3:
+                            return_message["message"] = "Error_password"
+                    client_socket.send(json.dumps(return_message).encode('utf-8'))
+                    if return_message["message"] == "OK":
                         break
-
-                # 这里加一行判断密码正确然后执行下面的发送
-                return_message = json.dumps(return_message)
-                return_message = return_message.encode('utf-8')
-                client_socket.send(return_message)  # 返回登录成功信息
-                break
-
+                if recv_message["type"] == "register":
+                    print("注册")
+                    return_message = {"type": "register", "message": "OK"}
+                    print(recv_message)
+                    k = store.user_zhuce(recv_message["user"], recv_message["password"], recv_message["again_Password"])
+                    print(k)
+                    if k == 1:
+                        return_message["message"] = "Error_user_exists"
+                    elif k == 2:
+                        return_message["message"] = "Error_password_diff"
+                    elif k == 3:
+                        return_message["message"] = "OK"
+                    print(return_message)
+                    client_socket.send(json.dumps(return_message).encode('utf-8'))
+            except:
+                print('登录失败，断开连接')
+                client_socket.close()
+                return
         users.append((client_socket, recv_message["user"], client_address))  # 将用户加入用户队列
         online_list.append(recv_message["user"])
         print('新的连接:', client_address, ':', recv_message["user"], end='')
