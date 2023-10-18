@@ -12,10 +12,10 @@ def start_voice_chat():
     HOST = host_entry.get()  # 获取输入的主机号
 
     # Start the server script
-    server_process = subprocess.Popen(['python', 'groupserver_audio.py', HOST], shell=True)
+    server_process = subprocess.Popen(['python', 'voice_server.py', HOST], shell=True)
 
     # Start the client script
-    client_process = subprocess.Popen(['python', 'groupclient_audio.py', HOST], shell=True)
+    client_process = subprocess.Popen(['python', 'voice_client.py', HOST], shell=True)
 
 def stop_voice_chat():
     global server_process, client_process
