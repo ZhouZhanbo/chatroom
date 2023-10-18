@@ -16,6 +16,36 @@ def create_database():
     conn.close()
 
 
+def user_change(username,oldpassword,newpassword,agaginnewpassword):
+    print("hhh")
+    conn = sqlite3.connect('user_data.db')
+    c = conn.cursor()
+
+    # 在users表中查找用户名
+    c.execute("SELECT * FROM users WHERE username=?", (username,))
+    user = c.fetchone()
+
+    if user is None:#用户不存在，返回1
+        return 1
+    else:
+        oldpassword = password_md5(oldpassword)
+        if user[1] == oldpassword:
+            if newpassword == agaginnewpassword:
+                newpassword = password_md5(newpassword)
+                delete_query = "DELETE FROM users WHERE username = ?"
+                c.execute(delete_query, (user[0],))
+                conn.commit()
+                c.execute("INSERT INTO users VALUES (?,?)", (user[0], newpassword))
+                conn.commit()
+                return 4#条件全满足，修改密码，返回4
+            else:
+                return 3#旧密码正确但输入的新密码和确认密码不一致，返回3
+        else:
+            return 2#用户存在但旧密码错误，返回2
+
+
+
+
 def user_zhuce(username,password,againpassword):    #注册用户
     print("ok")
     conn = sqlite3.connect('user_data.db')
