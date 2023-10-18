@@ -13,7 +13,7 @@ def create_chatGUI():
     global user, root, listbox, listbox1, a, entry
     root = tk.Tk()
     root.title("hust网络聊天室")  # 窗口命名为用户名
-    root['height'] = 400
+    root['height'] = 450
     root['width'] = 580
     root.resizable(0, 0)  # 限制窗口大小
     # 更改logo
@@ -38,15 +38,15 @@ def create_chatGUI():
     # 滚动条动，列表跟着动
     sc1.config(command=listbox1.yview)
 
+
     # 创建输入文本框和关联变量
-    a = tk.StringVar()
-    a.set('')
-    entry = tk.Entry(root, width=300, textvariable=a)
-    entry.place(x=5, y=350, width=570, height=40)
+    a = tk.Text(root)
+    a.delete("1.0", "end")
+    a.place(x=5, y=350, width=570, height=100)
 
     # 关闭窗口按钮
-    but1 = tk.Button(entry, text='关闭', command=root.destroy, font=15)
-    but1.place(x=445, y=10, width=50, height=30)
+    but1 = tk.Button(a, text='关闭', command=root.destroy, font=15)
+    but1.place(x=445, y=60, width=50, height=30)
     # 传输文件按钮
     global pic2
     photo2 = tk.PhotoImage(file="icon/file.png")

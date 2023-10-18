@@ -6,11 +6,11 @@ import chatGUI
 # 发送消息，发送给服务器消息
 def send(*args):
     global t, user
-    if not chatGUI.a.get():
+    if not chatGUI.a.get("1.0", "end"):
         print("error")
         return
-    t.add_information(user, chatGUI.a.get())
-    chatGUI.a.set("")
+    t.add_information(user, chatGUI.a.get("1.0", "end"))
+    chatGUI.a.delete("1.0", "end")
     chatGUI.listbox.insert(tkinter.END, "\n" + t.messages[-1][0] + ":" + t.messages[-1][1], 'blue')
     if __name__ == '__main__':
         t.show()

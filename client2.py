@@ -52,7 +52,7 @@ chat.create_chat()   # 创建聊天界面
 chat.chatGUI.entry.bind("<Return>", send)
 # 回车绑定发送功能
 but = tk.Button(chat.chatGUI.entry, text='发送', command=send, font=15)
-but.place(x=500, y=10, width=50, height=30)
+but.place(x=500, y=60, width=50, height=30)
 r = threading.Thread(target=recv)  # 启动接受消息线程
 r.start()
 chat.tkinter.mainloop()
