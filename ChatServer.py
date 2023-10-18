@@ -38,7 +38,7 @@ class Server:
                     client_socket.send(json.dumps(return_message).encode('utf-8'))
                     if return_message["message"] == "OK":
                         break
-                if recv_message["type"] == "register":
+                elif recv_message["type"] == "register":
                     print("注册")
                     return_message = {"type": "register", "message": "OK"}
                     print(recv_message)
@@ -52,6 +52,20 @@ class Server:
                         return_message["message"] = "OK"
                     print(return_message)
                     client_socket.send(json.dumps(return_message).encode('utf-8'))
+                elif recv_message["type"] == "change_password":
+                    return_message = {"type": "change_password", "message": "OK"}
+                    k = store.user_change(recv_message["user"], recv_message["Old_password"],
+                                          recv_message["New_password"], recv_message["again_new_Password"])
+                    if k == 1:
+                        return_message["message"] = "Error_user_not_exist"
+                    elif k == 2:
+                        return_message["message"] = "Error_password"
+                    elif k == 3:
+                        return_message["message"] = "Error_password_diff"
+                    elif k == 4:
+                        return_message["message"] = "OK"
+                    client_socket.send(json.dumps(return_message).encode('utf-8'))
+
             except:
                 print('登录失败，断开连接')
                 client_socket.close()

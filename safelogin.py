@@ -139,7 +139,91 @@ def create_loginroot():
     but.place(x=100, y=160, width=70, height=30)
     but2 = tk.Button(loginRoot, text='注册', command=zhuce, font=15)
     but2.place(x=230, y=160, width=70, height=30)
+    but3 = tk.Button(loginRoot, text='修改密码', command=changepw, font=('宋体', 10))
+    but3.place(x=170, y=200, width=60, height=25)
     loginRoot.mainloop()
+
+
+def create_changepwroot():
+    # 修改密码窗口
+    changepwRoot = tk.Tk()
+    changepwRoot.title("修改密码")
+    changepwRoot["height"] = 300
+    changepwRoot["width"] = 400
+    changepwRoot.resizable(0, 0)  # 限制窗口大小
+
+    # 用户名，旧密码，新密码，确认新密码
+    User = tk.StringVar()
+    User.set("")
+    oldpassword = tk.StringVar()
+    oldpassword.set("")
+    newpassword = tk.StringVar()
+    newpassword.set("")
+    againnewpassword = tk.StringVar()
+    againnewpassword.set("")
+
+    # 用户名标签
+    labelUser = tk.Label(changepwRoot, text='用户名', font=("宋体", 12))
+    labelUser.place(x=60, y=50, width=100, height=30)
+
+    entryUser = tk.Entry(changepwRoot, width=80, textvariable=User, font=12)
+    entryUser.place(x=160, y=50, width=130, height=30)
+
+    # 旧密码标签
+    labeloldpassword = tk.Label(changepwRoot, text='旧密码', font=("宋体", 12))
+    labeloldpassword.place(x=70, y=100, width=80, height=30)
+
+    entryoldpassword = tk.Entry(changepwRoot, width=80, textvariable=oldpassword, font=15)
+    entryoldpassword.place(x=160, y=100, width=130, height=30)
+
+    # 新密码标签
+    labelnewpassword = tk.Label(changepwRoot, text='新密码', font=("宋体", 12))
+    labelnewpassword.place(x=70, y=150, width=80, height=30)
+
+    entrynewpassword = tk.Entry(changepwRoot, width=80, textvariable=newpassword, font=15)
+    entrynewpassword.place(x=160, y=150, width=130, height=30)
+
+    # 确认新密码标签
+    labelagainnewpassword = tk.Label(changepwRoot, text='确认新密码', font=("宋体", 12))
+    labelagainnewpassword.place(x=70, y=200, width=80, height=30)
+
+    entryagainnewpassword = tk.Entry(changepwRoot, width=80, textvariable=againnewpassword, font=15)
+    entryagainnewpassword.place(x=160, y=200, width=130, height=30)
+    def change(*args):
+        print("hello")
+        user = entryUser.get()
+        Oldpassword = entryoldpassword.get()
+        Newpassword = entrynewpassword.get()
+        againnewPassword = entryagainnewpassword.get()
+        data = {"type": "change_password", "user": user, "Old_password": Oldpassword,
+                "New_password": Newpassword, "again_new_Password":againnewPassword}
+        s.send(json.dumps(data).encode('utf-8'))
+        recv_data = s.recv(1024).decode('utf-8')  # 接收返回信息
+        recv_data = json.loads(recv_data)
+        if recv_data["type"] == "change_password":  # 登录消息
+            if recv_data["message"] == "OK":
+                changepwRoot.destroy()
+            elif recv_data["message"] == "Error_user_not_exist":
+                tkinter.messagebox.showerror('提示', message='用户不存在！')
+            elif recv_data["message"] == "Error_password":
+                tkinter.messagebox.showerror('提示', message='用户原密码错误！')
+            elif recv_data["message"] == "Error_password_diff":
+                tkinter.messagebox.showerror('提示', message='密码不一致！')
+
+
+
+    button = tk.Button(changepwRoot, text='修改', command=change, font=10)
+    button.place(x=170, y=250, width=70, height=40)
+
+    changepwRoot.mainloop()
+
+
+def changepw(*args):
+    print("change")
+    loginRoot.destroy()
+    create_changepwroot()
+    create_loginroot()
+
 
 create_loginroot()
 
