@@ -2,7 +2,7 @@ import tkinter as tk
 import tkinter.messagebox
 import store
 import Zhuce
-
+import changepassword
 user = ""
 
 
@@ -11,6 +11,14 @@ def zhuce(*args):
     loginRoot.destroy()
     Zhuce.create_zhuceroot()
     create_loginroot()
+
+
+def changepw(*args):
+    print("change")
+    loginRoot.destroy()
+    changepassword.create_changepwroot()
+    create_loginroot()
+
 
 def create_loginroot():
     # 登陆窗口
@@ -68,6 +76,8 @@ def create_loginroot():
     but.place(x=100, y=160, width=70, height=30)
     but2 = tk.Button(loginRoot, text='注册', command=zhuce, font=15)
     but2.place(x=230, y=160, width=70, height=30)
+    but3 = tk.Button(loginRoot, text='修改密码',command=changepw, font=('宋体',10))
+    but3.place(x=170, y=200, width=60, height=25)
     loginRoot.mainloop()
 
 create_loginroot()
