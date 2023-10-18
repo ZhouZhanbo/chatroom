@@ -39,6 +39,7 @@ def revc(receiver, sender, message, time):
 # 创建聊天界面
 def create_chat():
     global t
+    t.close()
     chatGUI.user = user
     chatGUI.create_chatGUI()
     t = interact.Interact(user, "all_user")
@@ -87,4 +88,4 @@ def show_users(users):
 
 user = "user"
 chat = "all_user"
-t = 0
+t = interact.Interact(user, "all_user")

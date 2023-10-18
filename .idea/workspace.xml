@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="66e578f7-4982-4a48-9a89-73c32959b647" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/chatroom.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+    <list default="true" id="cc26f7c0-7f83-4b22-b184-8ed1c22f64d2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChatServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/ChatServer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhuce.py" beforeDir="false" afterPath="$PROJECT_DIR$/Zhuce.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client1.py" beforeDir="false" afterPath="$PROJECT_DIR$/client1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client2.py" beforeDir="false" afterPath="$PROJECT_DIR$/client2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interact.py" beforeDir="false" afterPath="$PROJECT_DIR$/interact.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/safelogin.py" beforeDir="false" afterPath="$PROJECT_DIR$/safelogin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store.py" beforeDir="false" afterPath="$PROJECT_DIR$/store.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user_data.db" beforeDir="false" afterPath="$PROJECT_DIR$/user_data.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +27,7 @@
   "customColor": "",
   "associatedIndex": 6
 }]]></component>
-  <component name="ProjectId" id="2WwVNhftnzAHyXMWulRCqMYgs57" />
+  <component name="ProjectId" id="2WxQPx5VeESfBxvXJb6aerKKCTC" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -39,7 +39,7 @@
     "git-widget-placeholder": "Merging zzb"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.client2">
+  <component name="RunManager" selected="Python.client1">
     <configuration name="ChatServer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="chatroom" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -105,8 +105,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.client2" />
         <item itemvalue="Python.client1" />
+        <item itemvalue="Python.client2" />
         <item itemvalue="Python.ChatServer" />
       </list>
     </recent_temporary>
@@ -114,11 +114,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="66e578f7-4982-4a48-9a89-73c32959b647" name="Changes" comment="" />
-      <created>1697643595024</created>
+      <changelist id="cc26f7c0-7f83-4b22-b184-8ed1c22f64d2" name="Changes" comment="" />
+      <created>1697671733532</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1697643595024</updated>
+      <updated>1697671733532</updated>
     </task>
     <servers />
   </component>
