@@ -18,6 +18,7 @@ def recv():
                 chat.show_users(data["user_list"])
             elif data["type"] == "message":  # 接收的消息是文本消息
                 chat.revc(data["receiver"], data["sender"], data["message"])
+
                 if data["receiver"] != "all_user":
                     for i in range(-1,chatGUI.listbox1.size()):  # 消息发送方背景变红
                         if chatGUI.listbox1.get(i) == data["sender"] \
@@ -35,7 +36,7 @@ def recv():
 
 # 发送消息
 def send(*args):
-    data = {"type": "message", "sender": chat.user, "receiver": chat.chat, "message": chat.chatGUI.a.get()}
+    data = {"type": "message", "sender": chat.user, "receiver": chat.chat, "message": chat.chatGUI.a.get("1.0","end")}
     chat.send()
     data = json.dumps(data)
     s.send(data.encode())
@@ -49,9 +50,9 @@ if chat.user:
 else:
     s.send("no".encode())
 chat.create_chat()   # 创建聊天界面
-chat.chatGUI.entry.bind("<Return>", send)
+chat.chatGUI.a.bind("<Return>", send)
 # 回车绑定发送功能
-but = tk.Button(chat.chatGUI.entry, text='发送', command=send, font=15)
+but = tk.Button(chat.chatGUI.a, text='发送', command=send, font=15)
 but.place(x=500, y=60, width=50, height=30)
 r = threading.Thread(target=recv)  # 启动接受消息线程
 r.start()
