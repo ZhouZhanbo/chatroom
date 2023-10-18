@@ -8,12 +8,11 @@ listbox = []
 listbox1 = []
 a = []
 entry = []
-
 # 聊天界面创建
 def create_chatGUI():
     global user, root, listbox, listbox1, a, entry
     root = tk.Tk()
-    root.title(user)  # 窗口命名为用户名
+    root.title("hust网络聊天室")  # 窗口命名为用户名
     root['height'] = 400
     root['width'] = 580
     root.resizable(0, 0)  # 限制窗口大小
@@ -49,12 +48,26 @@ def create_chatGUI():
     but1 = tk.Button(entry, text='关闭', command=root.destroy, font=15)
     but1.place(x=445, y=10, width=50, height=30)
     # 传输文件按钮
-    but2 = tk.Button(root, command="")
-    but2.config(image=tk.PhotoImage(file=".\\icon\\voice.png"))
-    but2.place(x=10, y=320, width=30, height=30)
-    # 语音通话按钮
-    but3 = tk.Button(root, text='语音通话', command="", font=15)
-    but3.place(x=110, y=320, width=100, height=30)
-    # 视频通话按钮
-    but4 = tk.Button(root, text='视频通话', command="", font=15)
-    but4.place(x=210, y=320, width=100, height=30)
+    global pic2
+    photo2 = tk.PhotoImage(file="icon/file.png")
+    pic2 = photo2.subsample(5, 5)
+    but2 = tk.Button(root, text="文件传输", command="", image=pic2, compound=tk.LEFT, height=18)
+    but2.place(x=10, y=322)
+    # 语音聊天按钮
+    global pic3
+    photo3 = tk.PhotoImage(file="icon/voice.png")
+    pic3 = photo3.subsample(5, 5)
+    but3 = tk.Button(root, text="语音聊天", command="", image=pic3, compound=tk.LEFT, height=18)
+    but3.place(x=95, y=322)
+    # 视频聊天按钮
+    global pic4
+    photo4 = tk.PhotoImage(file="icon/video.png")
+    pic4 = photo4.subsample(5, 5)
+    but4 = tk.Button(root, text="视频聊天", command="", image=pic4, compound=tk.LEFT, height=18)
+    but4.place(x=180, y=322)
+    # 用户属性按钮
+    global pic5
+    photo5 = tk.PhotoImage(file="icon/user.png")
+    pic5 = photo5.subsample(5, 5)
+    but4 = tk.Button(root, text="用户属性", command="", image=pic5, compound=tk.LEFT, height=18)
+    but4.place(x=485, y=322)
