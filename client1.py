@@ -1,11 +1,11 @@
-import socket
 import chat
 import chatGUI
 import safelogin
 import json
 import threading
 import tkinter as tk
-
+import time
+from safelogin import s
 
 # 接收消息
 def recv():
@@ -17,7 +17,7 @@ def recv():
             if data["type"] == "user_list":  # 接收的消息是用户列表，则重新加载用户
                 chat.show_users(data["user_list"])
             elif data["type"] == "message":  # 接收的消息是文本消息
-                chat.revc(data["receiver"], data["sender"], data["message"])
+                chat.revc(data["receiver"], data["sender"], data["message"], data["time"])
                 if data["receiver"] != "all_user":
                     for i in range(-1,chatGUI.listbox1.size()):  # 消息发送方背景变红
                         if chatGUI.listbox1.get(i) == data["sender"] \
@@ -35,27 +35,24 @@ def recv():
 
 # 发送消息
 def send(*args):
-    data = {"type": "message", "sender": chat.user, "receiver": chat.chat, "message": chat.chatGUI.a.get()}
-    chat.send()
+    timestamp = time.time()
+    data = {"type": "message", "sender": chat.user, "receiver": chat.chat,
+            "message": chat.chatGUI.a.get("1.0", "end"), "time": time.ctime(timestamp)}
+    chat.send(time.ctime(timestamp))
     data = json.dumps(data)
     s.send(data.encode())
 
 
 chat.user = safelogin.user
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect(("127.0.0.1", 11451))   # 网络链接
-if chat.user:
-    s.send(json.dumps({"type": "user", "user": chat.user}).encode())  # 发送用户名
-else:
-    s.send("no".encode())
-chat.create_chat()   # 创建聊天界面
-chat.chatGUI.entry.bind("<Return>", send)
-# 回车绑定发送功能
-but = tk.Button(chat.chatGUI.entry, text='发送', command=send, font=15)
-but.place(x=500, y=10, width=50, height=30)
-r = threading.Thread(target=recv)  # 启动接受消息线程
-r.start()
-chat.tkinter.mainloop()
-# 关闭链接，把缓存的消息放进文件
+if chat.user != "":
+    chat.create_chat()  # 创建聊天界面
+    chat.chatGUI.a.bind("<Return>", send)
+    # 回车绑定发送功能
+    but = tk.Button(chat.chatGUI.a, text='发送', command=send, font=15)
+    but.place(x=500, y=60, width=50, height=30)
+    r = threading.Thread(target=recv)  # 启动接受消息线程
+    r.start()
+    chat.tkinter.mainloop()
+# 关闭链接，把缓存的消息放进文件a
 s.close()
 chat.t.close()
