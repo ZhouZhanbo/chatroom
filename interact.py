@@ -10,8 +10,8 @@ class Interact(object):
         if not os.path.exists("./messages"):
             os.mkdir("./messages")
         else:
-            if os.path.exists("./messages/"+self.u1+self.u2+".txt"):
-                doc = open("./messages/"+self.u1+self.u2+".txt", "r")
+            if os.path.exists("./messages/"+self.u1+"__"+self.u2+".txt"):
+                doc = open("./messages/"+self.u1+"__"+self.u2+".txt", "r")
                 news = doc.readlines()
                 for line in news:
                     if "\0" in line:
@@ -38,9 +38,9 @@ class Interact(object):
 # 显示聊天记录，暂时用于程序测试
 
     def close(self):
-        doc = open(file="./messages/" + self.u1 + self.u2 + ".txt", mode="w")
+        doc = open(file="./messages/" + self.u1 + "__" + self.u2 + ".txt", mode="w")
         while len(self.messages):
-            doc.write(self.messages[0][0] + "\0" + self.messages[0][1] + "\0" + self.messages[0][2] + "\n")
+            doc.write(self.messages[0][0] + "\0" + self.messages[0][1].replace("\n", "") + "\0" + self.messages[0][2] + "\n")
             self.messages.pop(0)
         doc.close()
         del self

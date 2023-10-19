@@ -13,7 +13,7 @@ def send(time):
     t.add_information(user, chatGUI.a.get("1.0", "end"), time)
     chatGUI.a.delete("1.0", "end")
     chatGUI.listbox.insert(tkinter.END, "\n" + t.messages[-1][2], 'blue')
-    chatGUI.listbox.insert(tkinter.END, "\n" + t.messages[-1][0] + ":" + t.messages[-1][1], 'blue')
+    chatGUI.listbox.insert(tkinter.END, "\n" + t.messages[-1][0] + ":" + t.messages[-1][1].replace("\n", ""), 'blue')
     if __name__ == '__main__':
         t.show()
 
@@ -25,7 +25,7 @@ def revc(receiver, sender, message, time):
     if (t.u2 == "all_user" and receiver == "all_user") or (t.u2 == sender and receiver != "all_user"):
         t.add_information(sender, message, time)
         chatGUI.listbox.insert(tkinter.END, "\n" + t.messages[-1][2], 'black')
-        chatGUI.listbox.insert(tkinter.END, "\n" + sender + ":" + t.messages[-1][1], 'black')
+        chatGUI.listbox.insert(tkinter.END, "\n" + sender + ":" + t.messages[-1][1].replace("\n", ""), 'black')
     else:
         if receiver == "all_user":
             tt = interact.Interact(user, "all_user")
