@@ -89,3 +89,4 @@ if chat.user != "":
 # 关闭链接，把缓存的消息放进文件a
 s.close()
 chat.t.close()
+
