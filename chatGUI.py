@@ -29,7 +29,7 @@ def create_chatGUI():
     listbox.insert(tk.END, '欢迎加入聊天室(默认为群聊) ！', 'red')
 
     # 列表动，滚动条跟着动
-    listbox1 = tk.Listbox(root)
+    listbox1 = tk.Listbox(root,font=15)
     # 创建多行文本框, 显示在线用户
     listbox1.place(x=445, y=0, width=130, height=320)
     # 创建用户列表的滚动条
@@ -40,7 +40,7 @@ def create_chatGUI():
 
 
     # 创建输入文本框和关联变量
-    a = tk.Text(root)
+    a = tk.Text(root,font=15)
     a.delete("1.0", "end")
     a.place(x=5, y=350, width=570, height=100)
 

@@ -34,14 +34,14 @@ def create_zhuceroot():
     labelpassword = tk.Label(zhuceRoot, text='密  码', font=("宋体", 12))
     labelpassword.place(x=70, y=110, width=80, height=30)
 
-    entrypassword = tk.Entry(zhuceRoot, width=80, textvariable=password, font=15)
+    entrypassword = tk.Entry(zhuceRoot, width=80, textvariable=password, font=15, show='*')
     entrypassword.place(x=160, y=110, width=130, height=30)
 
     # 确认密码标签
     labelagainpassword = tk.Label(zhuceRoot, text='确认密码', font=("宋体", 12))
     labelagainpassword.place(x=70, y=170, width=80, height=30)
 
-    entryagainpassword = tk.Entry(zhuceRoot, width=80, textvariable=againpassword, font=15)
+    entryagainpassword = tk.Entry(zhuceRoot, width=80, textvariable=againpassword, font=15, show='*')
     entryagainpassword.place(x=160, y=170, width=130, height=30)
 
     def zhuce(*args):
@@ -104,7 +104,7 @@ def create_loginroot():
     labelpassword = tk.Label(loginRoot, text='密  码', font=("宋体", 12))
     labelpassword.place(x=70, y=110, width=80, height=30)
 
-    entrypassword = tk.Entry(loginRoot, width=80, textvariable=password, font=15)
+    entrypassword = tk.Entry(loginRoot, width=80, textvariable=password, font=15, show='*')
     entrypassword.place(x=160, y=110, width=130, height=30)
 
     # 登录按钮

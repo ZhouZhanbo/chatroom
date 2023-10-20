@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cc26f7c0-7f83-4b22-b184-8ed1c22f64d2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChatServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/ChatServer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhuce.py" beforeDir="false" afterPath="$PROJECT_DIR$/Zhuce.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client1.py" beforeDir="false" afterPath="$PROJECT_DIR$/client1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client2.py" beforeDir="false" afterPath="$PROJECT_DIR$/client2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/chatGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/safelogin.py" beforeDir="false" afterPath="$PROJECT_DIR$/safelogin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store.py" beforeDir="false" afterPath="$PROJECT_DIR$/store.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user_data.db" beforeDir="false" afterPath="$PROJECT_DIR$/user_data.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,10 +18,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2WxQPx5VeESfBxvXJb6aerKKCTC" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -36,10 +31,10 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging zzb"
+    "git-widget-placeholder": "zzb3.0"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.client1">
+  <component name="RunManager" selected="Python.client2">
     <configuration name="ChatServer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="chatroom" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -105,8 +100,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.client1" />
         <item itemvalue="Python.client2" />
+        <item itemvalue="Python.client1" />
         <item itemvalue="Python.ChatServer" />
       </list>
     </recent_temporary>
