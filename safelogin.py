@@ -5,7 +5,7 @@ import json
 
 user = ""
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect(("127.0.0.1", 11451))  # 网络链接
+s.connect(("192.168.43.126", 11451))  # 网络链接
 
 def create_zhuceroot():
     # 注册窗口

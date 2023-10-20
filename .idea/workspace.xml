@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cc26f7c0-7f83-4b22-b184-8ed1c22f64d2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/chatGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/safelogin.py" beforeDir="false" afterPath="$PROJECT_DIR$/safelogin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user_data.db" beforeDir="false" afterPath="$PROJECT_DIR$/user_data.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,14 +25,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "zzb3.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;zzb3.0&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Python.client2">
+}</component>
+  <component name="RunManager" selected="Python.client1">
     <configuration name="ChatServer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="chatroom" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -100,8 +98,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.client2" />
         <item itemvalue="Python.client1" />
+        <item itemvalue="Python.client2" />
         <item itemvalue="Python.ChatServer" />
       </list>
     </recent_temporary>
