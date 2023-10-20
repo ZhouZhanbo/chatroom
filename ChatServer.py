@@ -77,10 +77,17 @@ class Server:
         try:  # 进入接收循环
             while True:
                 data = client_socket.recv(1024).decode('utf-8')
-                print(json.loads(data))  # 调试时使用，查看接收消息是否正常
+                data = json.loads(data)  # 调试时使用，查看接收消息是否正常
                 lock.acquire()  # 申请开锁
                 try:
-                    mesg_que.put(data)  # 放入消息队列
+                    print(data)
+                    if data["type"] == "audio":
+                        mesg_que.put(json.dumps({"type": "audio", "IP": "127.0.0.1", "receiver": data["sender"]}))
+                        data = {"type": "audio", "IP": "127.0.0.1", "receiver": data["receiver"]}
+                    elif data["type"] == "video":
+                        mesg_que.put(json.dumps({"type": "video", "IP": "127.0.0.1", "receiver": data["sender"]}))
+                        data = {"type": "video", "IP": "127.0.0.1", "receiver": data["receiver"]}
+                    mesg_que.put(json.dumps(data))  # 放入消息队列
                 finally:
                     lock.release()  # 释放锁
         except:
@@ -110,7 +117,9 @@ class Server:
         while True:
             if not mesg_que.empty():  # 消息队列非空时
                 que = mesg_que.get()  # 取出队列中的消息
+
                 message = json.loads(que)  # 解包为字典格式
+                print(message)
                 if message["receiver"] == "all_user":  # 若为群发消息
                     for j in range(len(users)):
                         try:
@@ -119,6 +128,7 @@ class Server:
                             self.delete_user(users[0], users[1])
                 else:                            # 否则为私聊消息
                     for i in range(len(users)):  # 搜寻目标用户并转发
+                        print(message, users[i][1])
                         if users[i][1] == message["receiver"]:
                             users[i][0].send(json.dumps(message).encode())
                             break

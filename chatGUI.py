@@ -38,7 +38,6 @@ def create_chatGUI():
     # 滚动条动，列表跟着动
     sc1.config(command=listbox1.yview)
 
-
     # 创建输入文本框和关联变量
     a = tk.Text(root)
     a.delete("1.0", "end")
