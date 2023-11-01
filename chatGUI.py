@@ -10,7 +10,7 @@ a = []
 entry = []
 # 聊天界面创建
 def create_chatGUI():
-    global user, root, listbox, listbox1, a, entry
+    global user, root, listbox, listbox1, a
     root = tk.Tk()
     root.title("hust网络聊天室")  # 窗口命名为用户名
     root['height'] = 450
